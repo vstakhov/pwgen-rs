@@ -34,8 +34,11 @@ cargo build --release
 # Default: 12 characters, capitalized, with digit
 pwgen-rs normal
 
-# Longer password with symbols
-pwgen-rs normal --length 16 --symbols
+# 20 character password (positional shorthand for --length)
+pwgen-rs normal 20
+
+# With symbols
+pwgen-rs normal 16 --symbols
 
 # Multiple passwords
 pwgen-rs normal -n 5
@@ -47,11 +50,11 @@ pwgen-rs normal -n 5
 # Default: 16 characters with letters, numbers, and symbols
 pwgen-rs secure
 
-# Alphanumeric only, exclude ambiguous chars (0O1lI)
-pwgen-rs secure --charset alphanumeric --no-ambiguous
+# 32 character password (positional shorthand)
+pwgen-rs secure 32
 
-# 32 character password
-pwgen-rs secure --length 32
+# Alphanumeric only, exclude ambiguous chars (0O1lI)
+pwgen-rs secure 24 --charset alphanumeric --no-ambiguous
 ```
 
 ### Diceware Passphrases
@@ -60,11 +63,11 @@ pwgen-rs secure --length 32
 # Default: 6 words with dashes and mutations (leet speak, truncation)
 pwgen-rs phrase
 
-# 4 words with spaces, capitalized
-pwgen-rs phrase --words 4 --separator space --capitalize
+# 4 words (positional shorthand for --words)
+pwgen-rs phrase 4
 
-# Custom separator
-pwgen-rs phrase --custom-sep "."
+# With spaces and capitalized
+pwgen-rs phrase 5 --separator space --capitalize
 
 # Disable mutations for pure diceware words
 pwgen-rs phrase --no-mutate
@@ -81,8 +84,8 @@ Word mutations include:
 # Default: 6 digits
 pwgen-rs pin
 
-# 8-digit PIN
-pwgen-rs pin --length 8
+# 8-digit PIN (positional shorthand)
+pwgen-rs pin 8
 ```
 
 ### Global Options

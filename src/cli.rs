@@ -29,9 +29,13 @@ pub struct Cli {
 pub enum Command {
     /// Generate pronounceable passwords using Markov chains
     Normal {
+        /// Password length (positional shorthand)
+        #[arg(value_name = "LENGTH")]
+        length_pos: Option<usize>,
+
         /// Password length
-        #[arg(short, long, default_value = "12")]
-        length: usize,
+        #[arg(short, long)]
+        length: Option<usize>,
 
         /// Include numbers
         #[arg(short = 'd', long, default_value = "true")]
@@ -48,9 +52,13 @@ pub enum Command {
 
     /// Generate cryptographically secure random passwords
     Secure {
+        /// Password length (positional shorthand)
+        #[arg(value_name = "LENGTH")]
+        length_pos: Option<usize>,
+
         /// Password length
-        #[arg(short, long, default_value = "16")]
-        length: usize,
+        #[arg(short, long)]
+        length: Option<usize>,
 
         /// Character set to use
         #[arg(short = 'S', long, value_enum, default_value = "alphanumeric-symbols")]
@@ -63,9 +71,13 @@ pub enum Command {
 
     /// Generate diceware passphrases using EFF wordlist
     Phrase {
+        /// Number of words (positional shorthand)
+        #[arg(value_name = "WORDS")]
+        words_pos: Option<usize>,
+
         /// Number of words
-        #[arg(short, long, default_value = "6")]
-        words: usize,
+        #[arg(short, long)]
+        words: Option<usize>,
 
         /// Word separator
         #[arg(short, long, value_enum, default_value = "dash")]
@@ -86,9 +98,13 @@ pub enum Command {
 
     /// Generate numeric PIN codes
     Pin {
+        /// PIN length (positional shorthand)
+        #[arg(value_name = "LENGTH")]
+        length_pos: Option<usize>,
+
         /// PIN length
-        #[arg(short, long, default_value = "6")]
-        length: usize,
+        #[arg(short, long)]
+        length: Option<usize>,
     },
 }
 
