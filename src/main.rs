@@ -38,11 +38,12 @@ fn main() -> Result<()> {
             separator,
             custom_sep,
             capitalize,
+            no_mutate,
         } => {
             let sep = custom_sep
                 .clone()
                 .unwrap_or_else(|| separator.as_str().to_string());
-            Box::new(PassphraseGenerator::new(*words, sep, *capitalize))
+            Box::new(PassphraseGenerator::new(*words, sep, *capitalize, !*no_mutate))
         }
 
         Command::Pin { length } => Box::new(PinGenerator::new(*length)),

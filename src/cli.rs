@@ -78,6 +78,10 @@ pub enum Command {
         /// Capitalize each word
         #[arg(short = 'C', long)]
         capitalize: bool,
+
+        /// Disable word mutations (leet speak, truncation)
+        #[arg(long)]
+        no_mutate: bool,
     },
 
     /// Generate numeric PIN codes

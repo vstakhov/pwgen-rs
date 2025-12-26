@@ -8,7 +8,7 @@ A modern, feature-rich password generator CLI written in Rust. Created as an imp
 
 - **Pronounceable passwords** - Markov chain-based generation trained on English words
 - **Secure random passwords** - Cryptographically secure using ChaCha12 RNG
-- **Diceware passphrases** - Using EFF's 7776-word list (~12.9 bits/word)
+- **Diceware passphrases** - Using EFF's 7776-word list with optional word mutations (leet speak, truncation)
 - **PIN codes** - Numeric-only passwords
 - **Entropy visualization** - Colored progress bar with strength rating
 - **Flexible output** - Quiet mode for scripts, customizable separators and charsets
@@ -57,7 +57,7 @@ pwgen-rs secure --length 32
 ### Diceware Passphrases
 
 ```bash
-# Default: 6 words with dashes
+# Default: 6 words with dashes and mutations (leet speak, truncation)
 pwgen-rs phrase
 
 # 4 words with spaces, capitalized
@@ -65,7 +65,15 @@ pwgen-rs phrase --words 4 --separator space --capitalize
 
 # Custom separator
 pwgen-rs phrase --custom-sep "."
+
+# Disable mutations for pure diceware words
+pwgen-rs phrase --no-mutate
 ```
+
+Word mutations include:
+- **Leet speak** - Random letter substitutions (a→4, e→3, s→5, etc.)
+- **Truncation** - Shortening longer words
+- **Doubling** - Repeating a letter
 
 ### PIN Codes
 
@@ -106,7 +114,8 @@ pwgen-rs pin --length 8
 |------|---------|---------|
 | PIN (6 digits) | `495531` | ~20 bits |
 | Pronounceable (12 chars) | `Engou3ckeduc` | ~36 bits |
-| Passphrase (6 words) | `correct-horse-battery-staple-pizza-ninja` | ~78 bits |
+| Passphrase (6 words, no mutate) | `correct-horse-battery-staple` | ~78 bits |
+| Passphrase (6 words, mutated) | `corr3ct-h0rse-battery-5taple` | ~90 bits |
 | Secure (16 chars) | `D<(=j(\|Gu_NT2et\|` | ~103 bits |
 
 ## Strength Levels
