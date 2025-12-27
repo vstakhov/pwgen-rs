@@ -308,7 +308,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "pwgen-rs"
+name = "pwgen-x"
 version = "0.1.0"
 dependencies = [
  "anyhow",
