@@ -1,4 +1,4 @@
-# pwgen-rs
+# pwgen-x
 
 A modern, feature-rich password generator CLI written in Rust. Created as an improved alternative to the classic [`pwgen`](https://sourceforge.net/projects/pwgen/) utility, with better entropy visualization, multiple generation modes, and a more user-friendly interface.
 
@@ -23,7 +23,7 @@ Or build from source:
 
 ```bash
 cargo build --release
-./target/release/pwgen-rs --help
+./target/release/pwgen-x --help
 ```
 
 ## Usage
@@ -32,45 +32,45 @@ cargo build --release
 
 ```bash
 # Default: 12 characters, capitalized, with digit
-pwgen-rs normal
+pwgen-x normal
 
 # 20 character password (positional shorthand for --length)
-pwgen-rs normal 20
+pwgen-x normal 20
 
 # With symbols
-pwgen-rs normal 16 --symbols
+pwgen-x normal 16 --symbols
 
 # Multiple passwords
-pwgen-rs normal -n 5
+pwgen-x normal -n 5
 ```
 
 ### Secure Random Passwords
 
 ```bash
 # Default: 16 characters with letters, numbers, and symbols
-pwgen-rs secure
+pwgen-x secure
 
 # 32 character password (positional shorthand)
-pwgen-rs secure 32
+pwgen-x secure 32
 
 # Alphanumeric only, exclude ambiguous chars (0O1lI)
-pwgen-rs secure 24 --charset alphanumeric --no-ambiguous
+pwgen-x secure 24 --charset alphanumeric --no-ambiguous
 ```
 
 ### Diceware Passphrases
 
 ```bash
 # Default: 6 words with dashes and mutations (leet speak, truncation)
-pwgen-rs phrase
+pwgen-x phrase
 
 # 4 words (positional shorthand for --words)
-pwgen-rs phrase 4
+pwgen-x phrase 4
 
 # With spaces and capitalized
-pwgen-rs phrase 5 --separator space --capitalize
+pwgen-x phrase 5 --separator space --capitalize
 
 # Disable mutations for pure diceware words
-pwgen-rs phrase --no-mutate
+pwgen-x phrase --no-mutate
 ```
 
 Word mutations include:
@@ -82,10 +82,10 @@ Word mutations include:
 
 ```bash
 # Default: 6 digits
-pwgen-rs pin
+pwgen-x pin
 
 # 8-digit PIN (positional shorthand)
-pwgen-rs pin 8
+pwgen-x pin 8
 ```
 
 ### Global Options
@@ -129,9 +129,9 @@ pwgen-rs pin 8
 - 😊 **Strong** (75-99 bits) - Good security
 - 🔒 **Very Strong** (100+ bits) - Excellent security
 
-## Why pwgen-rs?
+## Why pwgen-x?
 
-The original `pwgen` is a great tool, but `pwgen-rs` offers several improvements:
+The original `pwgen` is a great tool, but `pwgen-x` offers several improvements:
 
 - **Entropy display** - See exactly how strong your password is in bits
 - **Diceware passphrases** - Built-in support for memorable word-based passwords

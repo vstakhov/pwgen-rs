@@ -2,7 +2,7 @@ use clap::{Parser, Subcommand, ValueEnum};
 
 #[derive(Parser, Debug)]
 #[command(
-    name = "pwgen-rs",
+    name = "pwgen-x",
     author,
     version,
     about = "Generate secure, memorable passwords",

@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-pwgen-rs is a CLI password generator with four modes:
+pwgen-x is a CLI password generator with four modes:
 - **normal** - Pronounceable passwords using 2nd-order Markov chain trained on EFF wordlist
 - **secure** - Cryptographically secure random passwords
 - **phrase** - Diceware passphrases using EFF 7776-word list

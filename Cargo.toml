@@ -1,9 +1,12 @@
 [package]
-name = "pwgen-rs"
+name = "pwgen-x"
 version = "0.1.0"
 edition = "2021"
 description = "A feature-rich password generator with pronounceable, secure, passphrase, and PIN modes"
 license = "Apache-2.0"
+repository = "https://github.com/vstakhov/pwgen-rs"
+homepage = "https://github.com/vstakhov/pwgen-rs"
+readme = "README.md"
 keywords = ["password", "generator", "security", "cli", "diceware"]
 categories = ["command-line-utilities", "cryptography"]
 
