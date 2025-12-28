@@ -1,5 +1,6 @@
 use rand::Rng;
 use rand::RngCore;
+use zeroize::Zeroizing;
 
 use crate::entropy::EntropyInfo;
 use crate::generators::{GeneratedPassword, PasswordGenerator};
@@ -136,7 +137,7 @@ impl PasswordGenerator for PassphraseGenerator {
         }
 
         GeneratedPassword {
-            value: passphrase,
+            value: Zeroizing::new(passphrase),
             entropy: EntropyInfo::new(entropy_bits, "Diceware"),
         }
     }

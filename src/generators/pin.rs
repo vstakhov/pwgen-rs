@@ -1,5 +1,6 @@
 use rand::Rng;
 use rand::RngCore;
+use zeroize::Zeroizing;
 
 use crate::entropy::EntropyInfo;
 use crate::generators::{GeneratedPassword, PasswordGenerator};
@@ -26,7 +27,7 @@ impl PasswordGenerator for PinGenerator {
         let entropy_bits = (self.length as f64) * Self::ENTROPY_PER_DIGIT;
 
         GeneratedPassword {
-            value: pin,
+            value: Zeroizing::new(pin),
             entropy: EntropyInfo::new(entropy_bits, "Numeric"),
         }
     }

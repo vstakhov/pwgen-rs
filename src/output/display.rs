@@ -21,8 +21,11 @@ impl PasswordDisplay {
 
     /// Display a generated password with strength indicator
     pub fn show(&self, password: &GeneratedPassword) {
+        // Dereference Zeroizing<String> to get the inner String
+        let value = password.value.as_str();
+
         if self.quiet {
-            println!("{}", password.value);
+            println!("{}", value);
             return;
         }
 
@@ -31,13 +34,9 @@ impl PasswordDisplay {
 
         // Password value
         if self.use_colors {
-            println!(
-                "  {} {}",
-                "Password:".bold(),
-                password.value.green().bold()
-            );
+            println!("  {} {}", "Password:".bold(), value.green().bold());
         } else {
-            println!("  Password: {}", password.value);
+            println!("  Password: {}", value);
         }
 
         // Progress bar

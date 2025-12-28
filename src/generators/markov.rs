@@ -3,6 +3,7 @@ use rand::prelude::Distribution;
 use rand::Rng;
 use rand::RngCore;
 use std::collections::HashMap;
+use zeroize::Zeroizing;
 
 use crate::entropy::EntropyInfo;
 use crate::generators::{GeneratedPassword, PasswordGenerator};
@@ -240,7 +241,7 @@ impl PasswordGenerator for MarkovGenerator {
                     let base_entropy = (self.length as f64) * self.avg_branching_factor.log2();
 
                     return GeneratedPassword {
-                        value: password,
+                        value: Zeroizing::new(password),
                         entropy: EntropyInfo::new(base_entropy, "Markov pronounceable"),
                     };
                 }
@@ -267,7 +268,7 @@ impl PasswordGenerator for MarkovGenerator {
         let entropy = (self.length as f64) * (syllables.len() as f64).log2() / 2.0;
 
         GeneratedPassword {
-            value: password,
+            value: Zeroizing::new(password),
             entropy: EntropyInfo::new(entropy, "Syllable fallback"),
         }
     }

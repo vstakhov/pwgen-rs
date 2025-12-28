@@ -1,5 +1,6 @@
 use rand::Rng;
 use rand::RngCore;
+use zeroize::Zeroizing;
 
 use crate::cli::CharSet;
 use crate::entropy::EntropyInfo;
@@ -68,7 +69,7 @@ impl PasswordGenerator for SecureGenerator {
         let entropy_bits = (self.length as f64) * (self.charset.len() as f64).log2();
 
         GeneratedPassword {
-            value: password,
+            value: Zeroizing::new(password),
             entropy: EntropyInfo::new(entropy_bits, "Random"),
         }
     }

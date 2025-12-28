@@ -1,8 +1,11 @@
+use zeroize::Zeroizing;
+
 use crate::entropy::EntropyInfo;
 
 /// Result of password generation
+/// The password value is wrapped in Zeroizing to ensure secure memory cleanup on drop
 pub struct GeneratedPassword {
-    pub value: String,
+    pub value: Zeroizing<String>,
     pub entropy: EntropyInfo,
 }
 
