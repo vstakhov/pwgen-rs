@@ -5,6 +5,7 @@ mod output;
 
 use anyhow::Result;
 use clap::Parser;
+use console::Term;
 use rand::thread_rng;
 
 use cli::{Cli, Command};
@@ -14,9 +15,13 @@ use output::PasswordDisplay;
 fn main() -> Result<()> {
     let cli = Cli::parse();
 
+    // Auto-enable quiet mode when stdout is not a TTY (e.g., piped to pbcopy)
+    let is_tty = Term::stdout().is_term();
+    let quiet = cli.quiet || !is_tty;
+
     // Determine color support
-    let use_colors = PasswordDisplay::should_use_colors(cli.no_color);
-    let display = PasswordDisplay::new(use_colors, cli.quiet);
+    let use_colors = is_tty && !cli.no_color;
+    let display = PasswordDisplay::new(use_colors, quiet);
 
     // Get the appropriate generator
     let generator: Box<dyn PasswordGenerator> = match &cli.command {
@@ -65,7 +70,7 @@ fn main() -> Result<()> {
     // Show header
     display.show_header(generator.description(), cli.count);
 
-    // Generate passwords
+    // Generate passwords using CSPRNG (thread_rng uses ChaCha12-based StdRng)
     let mut rng = thread_rng();
     for _ in 0..cli.count {
         let password = generator.generate(&mut rng);

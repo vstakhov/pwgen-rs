@@ -16,7 +16,7 @@ pub struct Cli {
     #[arg(short = 'n', long, default_value = "1", global = true)]
     pub count: usize,
 
-    /// Suppress decorative output (only show passwords)
+    /// Suppress decorative output (auto-enabled when piped)
     #[arg(short, long, global = true)]
     pub quiet: bool,
 

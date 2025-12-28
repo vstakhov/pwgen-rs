@@ -1,4 +1,3 @@
-use console::Term;
 use owo_colors::OwoColorize;
 
 use crate::entropy::StrengthLevel;
@@ -123,8 +122,4 @@ impl PasswordDisplay {
         println!();
     }
 
-    /// Detect if we should use colors
-    pub fn should_use_colors(no_color_flag: bool) -> bool {
-        !no_color_flag && Term::stdout().is_term()
-    }
 }
